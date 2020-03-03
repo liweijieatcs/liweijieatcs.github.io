@@ -20,27 +20,31 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="liweijie">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="概述这篇文章就是阅读GNU make时的笔记make这个软件是GNU的一个编译软件，最开始的作者是Richard Stallman 和 Roland McGrath，在3.76版本之后，又加入了Paul D.Smith要使用make,你需要一个makefile文件,该文件描述了项目中文件之间的关系和用来编译这些文件的命令。执行命令超级简单 1make  如何阅读这本手册先读前面的，再读后面的。 问">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GNU make 阅读笔记 ">
+<meta property="og:url" content="http://yoursite.com/2020/03/03/GNU-make-%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="liweijie">
+<meta property="og:description" content="概述这篇文章就是阅读GNU make时的笔记make这个软件是GNU的一个编译软件，最开始的作者是Richard Stallman 和 Roland McGrath，在3.76版本之后，又加入了Paul D.Smith要使用make,你需要一个makefile文件,该文件描述了项目中文件之间的关系和用来编译这些文件的命令。执行命令超级简单 1make  如何阅读这本手册先读前面的，再读后面的。 问">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-03T10:28:41.000Z">
+<meta property="article:modified_time" content="2020-03-03T13:37:12.627Z">
 <meta property="article:author" content="liweijie">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/">
+<link rel="canonical" href="http://yoursite.com/2020/03/03/GNU-make-%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false
+    isHome : false,
+    isPost : true
   };
 </script>
 
-  <title>liweijie</title>
+  <title>GNU make 阅读笔记  | liweijie</title>
   
 
 
@@ -141,10 +145,10 @@
             
 
   <div class="posts-expand">
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/03/GNU-make-%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -158,8 +162,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/03/GNU-make-%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">GNU make 阅读笔记 </a>
+          GNU make 阅读笔记 
         </h1>
 
         <div class="post-meta">
@@ -184,7 +187,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>这篇文章就是阅读GNU make时的笔记<br><br>make这个软件是GNU的一个编译软件，最开始的作者是<strong>Richard Stallman</strong> 和 <strong>Roland McGrath</strong>，在3.76版本之后，又加入了<strong>Paul D.Smith</strong><br><br>要使用make,你需要一个makefile文件,该文件描述了项目中文件之间的关系和用来编译这些文件的命令。<br><br>执行命令超级简单<br></p>
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>这篇文章就是阅读GNU make时的笔记<br><br>make这个软件是GNU的一个编译软件，最开始的作者是<strong>Richard Stallman</strong> 和 <strong>Roland McGrath</strong>，在3.76版本之后，又加入了<strong>Paul D.Smith</strong><br><br>要使用make,你需要一个makefile文件,该文件描述了项目中文件之间的关系和用来编译这些文件的命令。<br><br>执行命令超级简单<br></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make</span><br></pre></td></tr></table></figure>
 
 <h3 id="如何阅读这本手册"><a href="#如何阅读这本手册" class="headerlink" title="如何阅读这本手册"></a>如何阅读这本手册</h3><p>先读前面的，再读后面的。</p>
@@ -220,154 +223,33 @@
 <p>如果我们在项目中有个clean.c文件，且不是和这个容易引起冲突。所以实际上，我们这么写</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.PHONY : clean</span><br><span class="line">clean :</span><br><span class="line">    -rm edit $(objects)</span><br></pre></td></tr></table></figure>
 <h2 id="编写makefiles"><a href="#编写makefiles" class="headerlink" title="编写makefiles"></a>编写makefiles</h2><h3 id="makefiles包含哪些内容"><a href="#makefiles包含哪些内容" class="headerlink" title="makefiles包含哪些内容"></a>makefiles包含哪些内容</h3><h4 id="分割长句"><a href="#分割长句" class="headerlink" title="分割长句"></a>分割长句</h4><h3 id="你的makefile叫什么名字"><a href="#你的makefile叫什么名字" class="headerlink" title="你的makefile叫什么名字"></a>你的makefile叫什么名字</h3><h3 id="包含其他的makefile"><a href="#包含其他的makefile" class="headerlink" title="包含其他的makefile"></a>包含其他的makefile</h3><h3 id="MAkEFILES变量"><a href="#MAkEFILES变量" class="headerlink" title="MAkEFILES变量"></a>MAkEFILES变量</h3><h3 id="如何重造makefile"><a href="#如何重造makefile" class="headerlink" title="如何重造makefile"></a>如何重造makefile</h3><h3 id="make如何读取makefile"><a href="#make如何读取makefile" class="headerlink" title="make如何读取makefile"></a>make如何读取makefile</h3><h3 id="makefile如何被提取"><a href="#makefile如何被提取" class="headerlink" title="makefile如何被提取"></a>makefile如何被提取</h3><h3 id="二次扩展"><a href="#二次扩展" class="headerlink" title="二次扩展"></a>二次扩展</h3><h2 id="写规则"><a href="#写规则" class="headerlink" title="写规则"></a>写规则</h2>
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
         
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/03/Linux%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-1-memblock/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="liweijie">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="liweijie">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/03/Linux%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-1-memblock/" class="post-title-link" itemprop="url">Linux内存管理(1)--memblock</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-03-03 14:16:27 / Modified: 15:35:28" itemprop="dateCreated datePublished" datetime="2020-03-03T14:16:27+08:00">2020-03-03</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>我最近看了Linux内存管理，觉得太难看懂了，看了一部分就记录下来。不过不要慌张，会理解的。</p>
-<h1 id="memblock-API"><a href="#memblock-API" class="headerlink" title="memblock API"></a>memblock API</h1><p>memblock内存分配器的目的是在内核的内存管理器启动完成之前的一种内存管理器。<br/><br>内核在加载的时候也需要使用到内存，这是冯诺依曼的体系架构决定的，数据和指令是存储在内存中的，需要把内核先加入到内存，内存管理器是位于内核中的，那么内核的内存由谁申请的。</p>
-<h1 id="memblock-实操"><a href="#memblock-实操" class="headerlink" title="memblock 实操"></a>memblock 实操</h1><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
         
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/03/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="liweijie">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="liweijie">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/03/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-03-03 12:03:29" itemprop="dateCreated datePublished" datetime="2020-03-03T12:03:29+08:00">2020-03-03</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/03/Linux%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-1-memblock/" rel="prev" title="Linux内存管理(1)--memblock">
+      <i class="fa fa-chevron-left"></i> Linux内存管理(1)--memblock
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
   
 
   </div>
-
-  
-
 
 
           </div>
@@ -418,6 +300,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何阅读这本手册"><span class="nav-number">1.1.</span> <span class="nav-text">如何阅读这本手册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题和bugs"><span class="nav-number">1.2.</span> <span class="nav-text">问题和bugs</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Makefiles简介"><span class="nav-number">2.</span> <span class="nav-text">Makefiles简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#规则"><span class="nav-number">2.1.</span> <span class="nav-text">规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简单的Makefile"><span class="nav-number">2.2.</span> <span class="nav-text">简单的Makefile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#make这条命令是如何执行Makefile"><span class="nav-number">2.3.</span> <span class="nav-text">make这条命令是如何执行Makefile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用变量使得makefiles简单点"><span class="nav-number">2.4.</span> <span class="nav-text">用变量使得makefiles简单点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#让make来推测输入"><span class="nav-number">2.5.</span> <span class="nav-text">让make来推测输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#makefile的另外一些风格"><span class="nav-number">2.6.</span> <span class="nav-text">makefile的另外一些风格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#清除文件夹"><span class="nav-number">2.7.</span> <span class="nav-text">清除文件夹</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编写makefiles"><span class="nav-number">3.</span> <span class="nav-text">编写makefiles</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#makefiles包含哪些内容"><span class="nav-number">3.1.</span> <span class="nav-text">makefiles包含哪些内容</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分割长句"><span class="nav-number">3.1.1.</span> <span class="nav-text">分割长句</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#你的makefile叫什么名字"><span class="nav-number">3.2.</span> <span class="nav-text">你的makefile叫什么名字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#包含其他的makefile"><span class="nav-number">3.3.</span> <span class="nav-text">包含其他的makefile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MAkEFILES变量"><span class="nav-number">3.4.</span> <span class="nav-text">MAkEFILES变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何重造makefile"><span class="nav-number">3.5.</span> <span class="nav-text">如何重造makefile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#make如何读取makefile"><span class="nav-number">3.6.</span> <span class="nav-text">make如何读取makefile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#makefile如何被提取"><span class="nav-number">3.7.</span> <span class="nav-text">makefile如何被提取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二次扩展"><span class="nav-number">3.8.</span> <span class="nav-text">二次扩展</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写规则"><span class="nav-number">4.</span> <span class="nav-text">写规则</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
